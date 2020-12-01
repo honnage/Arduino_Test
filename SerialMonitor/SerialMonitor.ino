@@ -16,20 +16,21 @@ void setup() {
 void loop() {
   if(Serial.available() > 0){ //ตรวจสอบจำนวนไบต์
     char sRead = Serial.read(); //อ่านข้อมูลที่กดส่ง
-    
-    if(sRead == '1'){
+
+    switch (sRead){
+      case '1':
         digitalWrite(ledPin1, HIGH);  
         digitalWrite(ledPin2, HIGH);
         Serial.println(1);
-    }
-    
-    if(sRead == '0'){
+        break;
+        
+       case '0':
         digitalWrite(ledPin1, LOW); 
         digitalWrite(ledPin2, LOW); 
         Serial.println(0);
-    }
-  }
+        break;  
+     }
   
   delay(10);
-  
+  }
 }
