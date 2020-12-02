@@ -1,8 +1,11 @@
-const int analogInPin = A0;
-int sensorValue = 0;
+//const int analogInPin = A0;
+//int sensorValue = 0;
 
 const int ledPin = D7;
 int adcValue = 0;
+
+int delayTime = 50;
+int duty;
 
 void setup() {
   Serial.begin(9600);
@@ -10,16 +13,11 @@ void setup() {
 }
 
 void loop() {
-  sensorValue = analogRead(analogInPin);
-  //adcValue = sensorValue;
-  adcValue = map(sensorValue, 4, 1024,100, 1500);
-  
-  Serial.println(adcValue);
-  
-  digitalWrite(ledPin, HIGH);  
-  delay(adcValue);
-  
-  digitalWrite(ledPin, LOW);  
-  delay(adcValue);
+
+  for (duty = 0; duty < 1024; duty += 10){
+    analogWrite(ledPin, duty);
+    Serial.println(duty);
+    delay(delayTime);
+  }
   
 }
